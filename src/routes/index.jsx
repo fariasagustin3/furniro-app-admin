@@ -1,5 +1,7 @@
 import CategoriesPage from '../pages/CategoriesPage'
+import { CreateProductPage } from '../pages/CreateProductPage'
 import DashboardPage from '../pages/DashboardPage'
+import { EditProductPage } from '../pages/EditProductPage'
 import OrdersPage from '../pages/OrdersPage'
 import ProductsPage from '../pages/ProductsPage'
 import UsersPage from '../pages/UsersPage'
@@ -24,5 +26,13 @@ export const routerController = [
   {
     path: "/users",
     element: <UsersPage />,
+  },
+  {
+    path: "/create-product",
+    element: <CreateProductPage />,
+  },
+  {
+    path: "/edit-product/:id",
+    element: <EditProductPage />,
   },
 ]
