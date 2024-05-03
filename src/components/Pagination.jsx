@@ -1,9 +1,8 @@
-import { useState } from "react"
 
-export const Pagination = ({ page, previousPage, nextPage, totalPages, productsPerPage, totalProducts }) => {
+export const Pagination = ({ page, previousPage, nextPage, totalPages, itemsPerPage, totalItems }) => {
   return (
     <div className="mt-7 flex justify-between items-center">
-      <span className="text-slate-700">Showing {productsPerPage} elements from {totalProducts}</span>
+      <span className="text-slate-700">Showing {itemsPerPage} elements from {totalItems}</span>
       <div className="flex items-center gap-5 shadow-md rounded-full">
         <button onClick={previousPage} disabled={page === 1} className="py-2 px-2">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">

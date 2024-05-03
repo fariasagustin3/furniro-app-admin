@@ -31,12 +31,14 @@ const DataTable = ({ columns, rows, url, tag }) => {
               {columns.includes("Image") && (
                 <td>
                   <div className="flex items-center justify-center w-full h-full">
-                    <img src={item.images[0]} className="w-10 h-10 object-cover" alt="" />
+                    <img src={item.image || item.images[0]} className="w-10 h-10 object-cover" alt="" />
                   </div>
                 </td>
               )}
-              {rows.map((row) => (
-                <td key={row} className='text-sm text-center py-5'>{item[row]}</td>
+              {rows?.map((row) => (
+                <td key={row} className='text-sm text-center py-5'>
+                  {typeof item[row] === "boolean" ? ("Yes" || "No") : item[row]}
+                </td>
               ))}
               <td key={index} className='text-center py-5'>
                 <Link to={`/edit-product/${item._id}`}>
@@ -53,8 +55,8 @@ const DataTable = ({ columns, rows, url, tag }) => {
         previousPage={previousPage}
         nextPage={nextPage}
         totalPages={data.totalPages}
-        totalProducts={data.totalProducts}
-        productsPerPage={data[tag]?.length}
+        totalItems={data.total}
+        itemsPerPage={data[tag]?.length}
       />
     </div>
   )

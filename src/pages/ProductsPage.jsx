@@ -17,7 +17,6 @@ export default function ProductsPage() {
             <button className="bg-lime-500 px-5 py-2 text-white font-bold text-xs shadow-md rounded-sm">CREATE</button>
           </Link>
         </div>
-        <hr />
         <DataTable
           columns={columns}
           rows={rows}
