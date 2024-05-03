@@ -1,7 +1,11 @@
 import React from 'react'
+import NothingTemplate from '../components/NothingTemplate'
+import Layout from '../components/Layout'
 
 export const EditProductPage = () => {
   return (
-    <div>EditProductPage</div>
+    <Layout>
+      <NothingTemplate />
+    </Layout>
   )
 }

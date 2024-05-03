@@ -1,4 +1,5 @@
 import CategoriesPage from '../pages/CategoriesPage'
+import CreateCategoryPage from '../pages/CreateCategoryPage'
 import { CreateProductPage } from '../pages/CreateProductPage'
 import DashboardPage from '../pages/DashboardPage'
 import { EditProductPage } from '../pages/EditProductPage'
@@ -34,5 +35,9 @@ export const routerController = [
   {
     path: "/edit-product/:id",
     element: <EditProductPage />,
+  },
+  {
+    path: "/create-category",
+    element: <CreateCategoryPage />,
   },
 ]

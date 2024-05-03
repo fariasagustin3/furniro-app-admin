@@ -1,5 +1,10 @@
+import Layout from "../components/Layout";
+import NothingTemplate from "../components/NothingTemplate";
+
 export default function LoginPage() {
   return (
-    <div>LoginPage</div>
+    <Layout>
+      <NothingTemplate />
+    </Layout>
   )
 }

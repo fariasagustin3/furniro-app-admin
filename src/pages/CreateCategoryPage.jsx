@@ -1,10 +1,12 @@
 import Layout from '../components/Layout'
 import NothingTemplate from '../components/NothingTemplate'
 
-export const CreateProductPage = () => {
+const CreateCategoryPage = () => {
   return (
     <Layout>
       <NothingTemplate />
     </Layout>
   )
 }
+
+export default CreateCategoryPage
