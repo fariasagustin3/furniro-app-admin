@@ -17,6 +17,7 @@ export default function OrdersPage() {
           rows={rows}
           url={"orders/list"}
           tag={"orders"}
+          editRoute={"/edit-order"}
         />
       </div>
     </Layout>

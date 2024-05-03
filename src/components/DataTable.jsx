@@ -3,7 +3,7 @@ import { Pagination } from "./Pagination"
 import { useState } from "react"
 import { useFetch } from "../hooks/useFetch"
 
-const DataTable = ({ columns, rows, url, tag }) => {
+const DataTable = ({ columns, rows, url, tag, editRoute }) => {
   const [page, setPage] = useState(1)
   const { data } = useFetch(url, page)
   
@@ -41,7 +41,7 @@ const DataTable = ({ columns, rows, url, tag }) => {
                 </td>
               ))}
               <td key={index} className='text-center py-5'>
-                <Link to={`/edit-product/${item._id}`}>
+                <Link to={`${editRoute}/${item._id}`}>
                   <button className="bg-yellow-400 text-slate-100 px-4 py-1 rounded-sm text-sm mr-1">Edit</button>
                 </Link>
                 <button className="bg-red-400 text-slate-100 px-4 py-1 rounded-sm text-sm ml-1">Delete</button>

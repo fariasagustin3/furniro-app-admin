@@ -17,6 +17,7 @@ export default function UsersPage() {
           rows={rows}
           url={"users/list"}
           tag={"users"}
+          editRoute={"/edit-user"}
         />
       </div>
     </Layout>

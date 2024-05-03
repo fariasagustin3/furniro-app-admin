@@ -22,6 +22,7 @@ export default function ProductsPage() {
           rows={rows}
           url={"products/list"}
           tag={"products"}
+          editRoute={"/edit-product"}
         />
       </div>
     </Layout>

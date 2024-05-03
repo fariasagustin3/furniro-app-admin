@@ -20,6 +20,7 @@ export default function CategoriesPage() {
           rows={rows}
           url={"categories/list"}
           tag={"categories"}
+          editRoute={"/edit-category"}
         />
       </div>
     </Layout>
