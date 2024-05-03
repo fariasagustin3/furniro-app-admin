@@ -1,5 +1,7 @@
+import Layout from "../components/Layout";
+
 export default function CategoriesPage() {
   return (
-    <div>CategoriesPage</div>
+    <Layout></Layout>
   )
 }
