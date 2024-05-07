@@ -5,9 +5,15 @@ const InputImage = ({ title, imageSelected, onChange, handleSelectImage }) => {
     <div className='pr-7'>
       <h2 className='text-xl mb-5'>{title}</h2>
       <div className='w-80 h-80 border-[1px] border-gray-400 relative'>
-        {imageSelected ? (
+        {imageSelected && typeof imageSelected == "object" ? (
           <img
             src={URL.createObjectURL(imageSelected)}
+            alt="image-selected"
+            className='absolute w-full h-full object-cover'
+          />
+        ) : imageSelected?.split(":")[0] === "https" ? (
+          <img
+            src={imageSelected}
             alt="image-selected"
             className='absolute w-full h-full object-cover'
           />
