@@ -1,8 +1,6 @@
 import { Link } from "react-router-dom";
 import Layout from "../components/Layout";
 import DataTable from "../components/DataTable";
-import { useFetch } from "../hooks/useFetch";
-import { useState } from "react";
 
 export default function ProductsPage() {
   const columns = ["Image", "Title", "Price", "Quantity", "Actions"]
