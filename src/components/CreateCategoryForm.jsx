@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import InputText from './InputText'
 import InputNumber from './InputNumber';
 import TextArea from './TextArea';
@@ -15,6 +15,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { v4 } from 'uuid';
 
 const CreateCategoryForm = () => {
+  const [token, setToken] = useState(null)
   const [imageSelected, setImageSelected] = useState(null)
   const [loading, setLoading] = useState(false)
   const [input, setInput] = useState({
@@ -64,7 +65,7 @@ const CreateCategoryForm = () => {
       try {
         await axios.post("http://localhost:3001/categories/create", category, {
           headers: {
-            "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFndXN0aW4iLCJmdWxsTmFtZSI6IkFndXN0aW4iLCJlbWFpbCI6ImFndXNAZ21haWwuY29tIiwiaXNBZG1pbiI6dHJ1ZSwiaWF0IjoxNzE0Njg0MTI5fQ.KML8tAJESr1ovnvP1BpmJ1ABe6vwAoVvBGXE939VFx4"
+            "Authorization": token
           }
         })
         toast.success("Category created successfully.")
@@ -83,6 +84,10 @@ const CreateCategoryForm = () => {
       }
     }
   }
+
+  useEffect(() => {
+    setToken(localStorage.getItem("token"))
+  }, [])
 
   return (
     <form

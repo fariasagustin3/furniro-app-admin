@@ -3,26 +3,31 @@ import axios from 'axios'
 
 export function useFetch(url, page) {
   const [data, setData] = useState([]);
+  const [token, setToken] = useState(null)
 
   useEffect(() => {
-    if(page) {
+    setToken(localStorage.getItem("token"))
+  }, [token])
+
+  useEffect(() => {
+    if(page && token) {
       axios.get(`http://localhost:3001/${url}?page=${page}`, {
         headers: {
-          "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFndXN0aW4iLCJmdWxsTmFtZSI6IkFndXN0aW4iLCJlbWFpbCI6ImFndXNAZ21haWwuY29tIiwiaXNBZG1pbiI6dHJ1ZSwiaWF0IjoxNzE0Njg0MTI5fQ.KML8tAJESr1ovnvP1BpmJ1ABe6vwAoVvBGXE939VFx4"
+          "Authorization": token
         }
       })
         .then((response) => setData(response.data))
         .catch((err) => console.log(err));
-    } else {
+    } else if(token) {
       axios.get(`http://localhost:3001/${url}`, {
         headers: {
-          "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFndXN0aW4iLCJmdWxsTmFtZSI6IkFndXN0aW4iLCJlbWFpbCI6ImFndXNAZ21haWwuY29tIiwiaXNBZG1pbiI6dHJ1ZSwiaWF0IjoxNzE0Njg0MTI5fQ.KML8tAJESr1ovnvP1BpmJ1ABe6vwAoVvBGXE939VFx4"
+          "Authorization": token
         }
       })
         .then((response) => setData(response.data))
         .catch((err) => console.log(err));
     }
-  }, [page])
+  }, [token, page])
 
   return { data }
 }

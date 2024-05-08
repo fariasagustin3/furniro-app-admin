@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom"
 import { Pagination } from "./Pagination"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { useFetch } from "../hooks/useFetch"
 import AlertDeleteDialog from "./AlertDeleteDialog"
 import axios from "axios"
@@ -8,10 +8,15 @@ import { ToastContainer, toast } from "react-toastify"
 import 'react-toastify/dist/ReactToastify.css';
 
 const DataTable = ({ columns, rows, url, tag, editRoute }) => {
+  const [token, setToken] = useState(null)
   const [page, setPage] = useState(1)
   const { data } = useFetch(url, page)
   const [open, setOpen] = useState(false)
   const [id, setId] = useState("")
+
+  useEffect(() => {
+    setToken(localStorage.getItem("token"))
+  }, [])
 
   const previousPage = () => {
     setPage(page - 1)
@@ -39,7 +44,7 @@ const DataTable = ({ columns, rows, url, tag, editRoute }) => {
       try {
         await axios.delete(`http://localhost:3001/${tag}/${id}/delete`, {
           headers: {
-            "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFndXN0aW4iLCJmdWxsTmFtZSI6IkFndXN0aW4iLCJlbWFpbCI6ImFndXNAZ21haWwuY29tIiwiaXNBZG1pbiI6dHJ1ZSwiaWF0IjoxNzE0Njg0MTI5fQ.KML8tAJESr1ovnvP1BpmJ1ABe6vwAoVvBGXE939VFx4"
+            "Authorization": token
           }
         })
         setOpen(false)
@@ -81,15 +86,15 @@ const DataTable = ({ columns, rows, url, tag, editRoute }) => {
                   {item[row].toString()}
                 </td>
               ))}
-              {tag !== "orders" && (
 
                 <td key={index} className='text-center py-5'>
+              {tag !== "orders" && (
                   <Link to={`${editRoute}/${item._id}`}>
                     <button className="bg-yellow-400 text-slate-100 px-4 py-1 rounded-sm text-sm mr-1">Edit</button>
                   </Link>
+              )}
                   <button onClick={() => openDialog(item._id)} className="bg-red-400 text-slate-100 px-4 py-1 rounded-sm text-sm ml-1">Delete</button>
                 </td>
-              )}
             </tr>
           ))}
         </tbody>
