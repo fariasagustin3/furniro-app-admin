@@ -1,5 +1,5 @@
-import Layout from '../components/Layout'
-import CreateProductForm from '../components/CreateProductForm'
+import Layout from '../../components/Layout'
+import CreateProductForm from '../../components/CreateProductForm'
 
 export const CreateProductPage = () => {
   return (
@@ -15,3 +15,5 @@ export const CreateProductPage = () => {
     </Layout>
   )
 }
+
+export default CreateProductPage

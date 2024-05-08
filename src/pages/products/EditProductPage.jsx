@@ -1,7 +1,7 @@
 import { useParams } from 'react-router-dom'
-import EditProductForm from '../components/EditProductForm'
-import Layout from '../components/Layout'
-import { useFetch } from '../hooks/useFetch'
+import EditProductForm from '../../components/EditProductForm'
+import Layout from '../../components/Layout'
+import { useFetch } from '../../hooks/useFetch'
 import { useEffect, useState } from 'react'
 import axios from 'axios'
 

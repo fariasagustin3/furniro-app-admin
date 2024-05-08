@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import InputText from './InputText'
 import InputNumber from './InputNumber';
 import TextArea from './TextArea';
@@ -13,8 +13,10 @@ import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { v4 } from 'uuid';
+import AdditionalInfoDialog from './AdditionalInfoDialog';
 
 const CreateProductForm = () => {
+  const [open, setOpen] = useState(false)
   const [imageSelected, setImageSelected] = useState(null)
   const [loading, setLoading] = useState(false)
   const [input, setInput] = useState({
@@ -27,6 +29,7 @@ const CreateProductForm = () => {
     quantity: undefined,
     discount: undefined,
     trending: false,
+    additional: {},
   });
 
   // fetching data for select inputs
@@ -75,6 +78,33 @@ const CreateProductForm = () => {
     }
   }
 
+  const openDialog = () => {
+    setOpen(true);
+  }
+
+  const handleClose = (value) => {
+    setOpen(value)
+  }
+
+  const deleteAdditionalInfo = (a) => {
+    const { [a]: prop, ...additional } = input.additional
+
+    setInput({
+      ...input,
+      additional
+    })
+  }
+
+  const receiveAdditionalInfo = (value) => {
+    setInput({
+      ...input,
+      additional: {
+        ...input.additional,
+        [value.key]: value.value
+      }
+    })
+  }
+
   // function that handles input data when form send them
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -92,6 +122,7 @@ const CreateProductForm = () => {
         quantity: parseInt(input.quantity),
         discount: parseInt(input.discount),
         trending: Boolean(input.trending),
+        additionalInformation: input.additional,
       }
 
       setLoading(true)
@@ -114,10 +145,11 @@ const CreateProductForm = () => {
           quantity: undefined,
           discount: undefined,
           trending: false,
+          additional: {},
         })
-        setTimeout(() => {
-          window.location.href = "http://localhost:5173/products"
-        }, 2000)
+        // setTimeout(() => {
+        //   window.location.href = "http://localhost:5173/products"
+        // }, 2000)
       } catch (err) {
         toast.error("Something went wrong.")
         setLoading(false)
@@ -125,6 +157,11 @@ const CreateProductForm = () => {
       }
     }
   }
+
+  useEffect(() => {
+    // console.log(Object.entries(input.additional).map((element) => console.log(`Formato objeto: {${element[0]}: ${element[1]}}`)))
+    console.log(input.additional)
+  }, [input.additional])
 
   return (
     <form
@@ -202,7 +239,6 @@ const CreateProductForm = () => {
             value={input.discount}
             name="discount"
             onChange={handleInputChange}
-            required={true}
           />
           <Checkbox
             label="Trending Product"
@@ -211,11 +247,36 @@ const CreateProductForm = () => {
             onChange={handleCheckboxChange}
           />
         </div>
+        {/* additional information */}
+        <div className='flex flex-col gap-2'>
+          <div className='flex flex-row items-center gap-5 mt-5'>
+            <h3 className='text-xl self-center'>Additional Information</h3>
+            <button
+              type='button'
+              className='px-5 py-2 font-semibold text-sm bg-green-600 text-slate-100 rounded-sm'
+              onClick={openDialog}
+            >
+              ADD
+            </button>
+          </div>
+          {Object.entries(input?.additional).map((element) => (
+            <div className='flex items-center gap-5'>
+              <span className='font-semibold'>{element[0]}:</span>
+              <span>{element[1]}</span>
+              <span onClick={() => deleteAdditionalInfo(element[0])} className='text-red-600 font-bold cursor-pointer'>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M15 12H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                </svg>
+              </span>
+            </div>
+          ))}
+        </div>
         <SubmitButton
           loading={loading}
           imageSelected={imageSelected}
         />
       </div>
+      <AdditionalInfoDialog open={open} close={handleClose} onAdd={receiveAdditionalInfo} />
       <InputImage
         title="Upload Image"
         imageSelected={imageSelected}

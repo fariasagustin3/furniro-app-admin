@@ -1,8 +1,8 @@
 import React from 'react'
-import Layout from '../components/Layout'
-import EditCategoryForm from '../components/EditCategoryForm'
+import Layout from '../../components/Layout'
+import EditCategoryForm from '../../components/EditCategoryForm'
 import { useParams } from 'react-router-dom'
-import { useFetch } from '../hooks/useFetch'
+import { useFetch } from '../../hooks/useFetch'
 
 const EditCategoryPage = () => {
   const { id } = useParams()

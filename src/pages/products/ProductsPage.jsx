@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
-import Layout from "../components/Layout";
-import DataTable from "../components/DataTable";
+import Layout from "../../components/Layout";
+import DataTable from "../../components/DataTable";
 
 export default function ProductsPage() {
   const columns = ["Image", "Title", "Price", "Quantity", "Actions"]

@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
-import DataTable from "../components/DataTable";
-import Layout from "../components/Layout";
+import DataTable from "../../components/DataTable";
+import Layout from "../../components/Layout";
 
 export default function UsersPage() {
   const columns = ["Username", "Full Name", "Email", "Admin"]

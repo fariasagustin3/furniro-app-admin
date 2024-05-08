@@ -1,14 +1,15 @@
-import CategoriesPage from '../pages/CategoriesPage'
-import CreateCategoryPage from '../pages/CreateCategoryPage'
-import { CreateProductPage } from '../pages/CreateProductPage'
-import DashboardPage from '../pages/DashboardPage'
-import EditCategoryPage from '../pages/EditCategoryPage'
-import EditOrderPage from '../pages/EditOrderPage'
-import EditProductPage from '../pages/EditProductPage'
-import EditUserPage from '../pages/EditUserPage'
-import OrdersPage from '../pages/OrdersPage'
-import ProductsPage from '../pages/ProductsPage'
-import UsersPage from '../pages/UsersPage'
+import CategoriesPage from "../pages/categories/CategoriesPage";
+import CreateCategoryPage from "../pages/categories/CreateCategoryPage";
+import EditCategoryPage from "../pages/categories/EditCategoryPage";
+import DashboardPage from "../pages/dashboard/DashboardPage";
+import EditOrderPage from "../pages/orders/EditOrderPage";
+import OrdersPage from "../pages/orders/OrdersPage";
+import CreateProductPage from "../pages/products/CreateProductPage";
+import EditProductPage from "../pages/products/EditProductPage";
+import ProductsPage from "../pages/products/ProductsPage";
+import EditUserPage from "../pages/users/EditUserPage";
+import UsersPage from "../pages/users/UsersPage";
+
 
 export const routerController = [
   {
